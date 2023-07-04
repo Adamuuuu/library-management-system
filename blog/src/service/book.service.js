@@ -21,6 +21,20 @@ class BookService {
         const [result] = await connection.execute(statement, [bookId]);
         return result;
     }
+    async queryTitleInfo(title) {
+        const statement =
+            "select * from Books where Title=? ";
+        const [result] = await connection.execute(statement, [title]);
+        console.log("这是用书名查找到的信息", result)
+        return result;
+    }
+    async queryAuthorInfo(author) {
+        const statement =
+            "select * from Books where Author=? ";
+        const [result] = await connection.execute(statement, [author]);
+        console.log("这是用书名查找到的信息", result)
+        return result;
+    }
     async update(book) {
         const { Title, Author, Price, Publisher, Summary, TotalCopies, AvailableCopies } = book;
         // const id = ctx.user.id

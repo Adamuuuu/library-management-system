@@ -13,7 +13,8 @@
                         <!-- <homeHeader @foldchange="handleFoldChange"></homeHeader> -->
                     </el-header>
                     <el-main class="main">
-                        <mainContent></mainContent>
+                        <!-- <mainContent></mainContent> -->
+                        <router-view />
                     </el-main>
                 </el-container>
             </el-container>

@@ -31,6 +31,26 @@ class BookController {
             data: result,
         };
     }
+    async queryTitleInfo(ctx, next) {
+        const { title } = ctx.params;
+        console.log("这是title", title)
+        const result = await bookservice.queryTitleInfo(title);
+        ctx.body = {
+            code: 0,
+            message: "查询图书成功",
+            data: result,
+        };
+    }
+    async queryAuthorInfo(ctx, next) {
+        const { author } = ctx.params;
+
+        const result = await bookservice.queryAuthorInfo(author);
+        ctx.body = {
+            code: 0,
+            message: "查询图书成功",
+            data: result,
+        };
+    }
     //更新图书信息
     async update(ctx, next) {
         const book = ctx.request.body

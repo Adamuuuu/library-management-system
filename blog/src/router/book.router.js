@@ -9,7 +9,8 @@ bookRouter.post("/", verifyAuth, bookController.create);
 
 bookRouter.get("/query", verifyAuth, bookController.queryAll);
 bookRouter.get("/query/:bookId", verifyAuth, bookController.queryInfo);
-
+bookRouter.get("/queryTitle/:title", verifyAuth, bookController.queryTitleInfo);
+bookRouter.get("/queryAuthor/:author", verifyAuth, bookController.queryAuthorInfo);
 // 修改图书信息
 
 bookRouter.patch(

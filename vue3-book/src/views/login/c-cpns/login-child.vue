@@ -14,14 +14,9 @@
           </template>
 
           <!-- 账号密码表单 -->
-          <el-form
-            :model="account"
-            :rules="accountRules"
-            ref="fromRef"
-            status-icon
-          >
+          <el-form :model="account" :rules="accountRules" ref="fromRef" status-icon>
             <el-form-item label="账号" prop="name">
-              <el-input v-model="account.name" />
+              <el-input v-model="account.username" />
             </el-form-item>
             <el-form-item label="密码" prop="password">
               <el-input v-model="account.password" show-password />
@@ -57,13 +52,7 @@
     </div>
     <!-- 立即登录按钮 -->
     <div class="footer">
-      <el-button
-        type="primary"
-        class="login-btn"
-        size="large"
-        @click="loginAction"
-        >立即登录</el-button
-      >
+      <el-button type="primary" class="login-btn" size="large" @click="loginAction">立即登录</el-button>
     </div>
   </div>
 </template>
@@ -72,14 +61,15 @@
 import type { FormRules } from "element-plus";
 import { reactive, ref, watch } from "vue";
 import { localCache } from "../../../utils/cache";
-
+import accountLoginStore from "@/stores/login/login"
+const { accountLoginAction } = accountLoginStore
 const activeName = ref("account");
 const account = reactive({
-  name: "",
+  username: "",
   password: "",
 });
 const accountRules: FormRules = {
-  name: [
+  username: [
     { required: true, message: "请输入账号", trigger: "blur" },
     {
       min: 6,
@@ -105,6 +95,7 @@ watch(isremember, (newValue) => {
 });
 
 function loginAction() {
+  accountLoginAction(account)
   console.log("登陆成功");
 }
 </script>
